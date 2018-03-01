@@ -1,6 +1,6 @@
 def main():
     import_data()
-    read_csv()
+    import_multi_data()
 
 def import_data():
     """A function that asks for the user to input the filename (e.g. \

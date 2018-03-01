@@ -1,16 +1,10 @@
-def duration(file_):
+def duration():
+    import pandas as pd
+    df = single_df
+    df.columns = ["time", "voltage"]
+    duration = df["time"].max()
+    display = str(duration) + " seconds"
+    print(display)
 
-    """...
-
-    :param:
-
-    :returns:
-    :raises ImportError:
-    :raises TypeError:
-    :raises ValueError:
-    """
-
-    import logging
-    str_ = logging.DEBUG
-    logging.basicConfig(filename="hrmonitorlog.txt", format='%(levelname)s \
-    %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=str_)
+if __name__ == '__main__':
+    duration()

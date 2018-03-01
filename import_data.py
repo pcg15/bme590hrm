@@ -2,9 +2,11 @@ def main():
     import_data()
     import_multi_data()
 
+
 def import_data():
     """A function that asks for the user to input the filename (e.g. \
-    test_data1.csv) for the desired data and converts the data into a DataFrame.
+    test_data1.csv) for the desired data and converts the data into a \
+    DataFrame.
 
     :param file_choice: a string of the csv filename from user input
 
@@ -19,6 +21,7 @@ def import_data():
     if choice.exists():
         single_df = pd.read_csv("test_data/"+file_choice, header=None)
     return single_df
+
 
 def import_multi_data():
     """A function that collects a list of variable ECG csv files and expresses \

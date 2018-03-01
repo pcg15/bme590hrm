@@ -1,16 +1,10 @@
-def voltage_extremes(file_):
+def voltage_extremes():
+    import pandas as pd
+    df = single_df
+    df.columns = ["time", "voltage"]
+    voltage_min = df["voltage"].min()
+    voltage_max = df["voltage"].max()
+    display = (voltage_min, voltage_max)
 
-    """...
-
-    :param:
-
-    :returns:
-    :raises ImportError:
-    :raises TypeError:
-    :raises ValueError:
-    """
-
-    import logging
-    str_ = logging.DEBUG
-    logging.basicConfig(filename="hrmonitorlog.txt", format='%(levelname)s \
-    %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=str_)
+if __name__ == '__main__':
+    voltage_extremes()

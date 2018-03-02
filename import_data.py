@@ -19,6 +19,8 @@ def import_data(filename):
     choice = Path("test_data/"+filename)
     if choice.exists():
         df = pd.read_csv("test_data/" + filename, header=None)
+        logging.info("import_data: data imported")
     else:
+        logging.warning("Invalid input")
         raise IOError("Invalid Selection: file not in folder")
     return df

@@ -11,7 +11,10 @@ def duration(filename):
     """
     import pandas as pd
     from import_data import import_data
+    logging.info("duration: everything imported")
     df = import_data(filename)
     df.columns = ["time", "voltage"]
     duration = df["time"].max()
+    logging.info("duration: duration found")
+    logging.debug("duration="+str(duration))
     return duration

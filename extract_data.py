@@ -16,6 +16,8 @@ def extract_voltage_data(filename):
     values = df.values
     voltage = values[:,1]
     norm_voltage = voltage - np.mean(voltage)
+    logging.info("extract_voltage_data: norm_voltage found")
+    logging.debug("norm_voltage="+str(norm_voltage))
     return norm_voltage
 
 def extract_time_data(filename):
@@ -30,6 +32,8 @@ def extract_time_data(filename):
     df = import_data(filename)
     values = df.values
     time = values[:,0]
+    logging.info("extract_time_data: time data found")
+    logging.debug("time="+str(time))
     return time
 
 def extract_template_data(template):
@@ -44,4 +48,6 @@ def extract_template_data(template):
     temp_values = template.values
     temp_vol = temp_values[:,1]
     norm_template = temp_vol - np.mean(temp_vol)
+    logging.info("extract_template_data: norm_template found")
+    logging.debug("norm_template="+str(norm_template))
     return norm_template

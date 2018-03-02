@@ -4,8 +4,6 @@ import numpy as np
 import pandas as pd
 import scipy.signal as signal
 from pathlib import Path
-
-
 logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
 %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
@@ -47,8 +45,23 @@ class HRMonitor:
 
         :returns duration: duration of signal as a float (sec)
         """
-        from duration import duration
-        duration = duration(self.filename)
+        try:
+            from duration import duration
+            logging.info("HRMonitor: duration imported")
+        except:
+            print("ImportError:")
+            print("duration function could not be found")
+        try:
+            duration = duration(self.filename)
+            logging.info("HRMonitor: duration found")
+        except TypeError:
+            logging.warning("Invalid input type")
+            print("TypeError:")
+            print("Your input is not supported. Follow tips in parentheses")
+        except ValueError:
+            logging.warning("Invalid input value")
+            print("ValueError")
+            print("Your input is not supported. Follow tips in parentheses")
         return duration
 
     def voltage_extremes(self):
@@ -61,8 +74,23 @@ class HRMonitor:
         :returns voltage_extremes: lead voltage minimum and maximum as tuple \
         (mV)
         """
-        from voltage_extremes import voltage_extremes
-        voltage_extremes = voltage_extremes(self.filename)
+        try:
+            from voltage_extremes import voltage_extremes
+            logging.info("HRMonitor: voltage_extremes imported")
+        except:
+            print("ImportError:")
+            print("voltage_extremes function could not be found")
+        try:
+            voltage_extremes = voltage_extremes(self.filename)
+            logging.info("HRMonitor: voltage_extremes found")
+        except TypeError:
+            logging.warning("Invalid input type")
+            print("TypeError:")
+            print("Your input is not supported. Follow tips in parentheses")
+        except ValueError:
+            logging.warning("Invalid input value")
+            print("ValueError")
+            print("Your input is not supported. Follow tips in parentheses")
         return voltage_extremes
 
     def num_beats(self):
@@ -73,8 +101,23 @@ class HRMonitor:
 
         :returns num_beats: number of heart beats in signal as integer
         """
-        from num_beats import num_beats
-        num_beats = num_beats(self.filename)
+        try:
+            from num_beats import num_beats
+            logging.info("HRMonitor: num_beats imported")
+        except:
+            print("ImportError:")
+            print("num_beats function could not be found")
+        try:
+            num_beats = num_beats(self.filename)
+            logging.info("HRMonitor: num_beats found")
+        except TypeError:
+            logging.warning("Invalid input type")
+            print("TypeError:")
+            print("Your input is not supported. Follow tips in parentheses")
+        except ValueError:
+            logging.warning("Invalid input value")
+            print("ValueError")
+            print("Your input is not supported. Follow tips in parentheses")
         return num_beats
 
     def beats(self):
@@ -85,8 +128,23 @@ class HRMonitor:
 
         :returns beats: numpy array of times where a heart beat occured
         """
-        from beats import beats
-        beats = beats(self.filename)
+        try:
+            from beats import beats
+            logging.info("HRMonitor: beats imported")
+        except:
+            print("ImportError:")
+            print("beats function could not be found")
+        try:
+            beats = beats(self.filename)
+            logging.info("HRMonitor: beats found")
+        except TypeError:
+            logging.warning("Invalid input type")
+            print("TypeError:")
+            print("Your input is not supported. Follow tips in parentheses")
+        except ValueError:
+            logging.warning("Invalid input value")
+            print("ValueError")
+            print("Your input is not supported. Follow tips in parentheses")
         return beats
 
     def mean_hr_bpm(self):
@@ -97,11 +155,26 @@ class HRMonitor:
 
         :returns mean_hr_bpm: heartrate during a specific period as a float
         """
-        from mean_hr_bpm import mean_hr_bpm
-        mean_hr_bpm = mean_hr_bpm(self.filename)
+        try:
+            from mean_hr_bpm import mean_hr_bpm
+            logging.info("HRMonitor: mean_hr_bpm imported")
+        except:
+            print("ImportError:")
+            print("mean_hr_bpm function could not be found")
+        try:
+            mean_hr_bpm = mean_hr_bpm(self.filename)
+            logging.info("HRMonitor: mean_hr_bpm found")
+        except TypeError:
+            logging.warning("Invalid input type")
+            print("TypeError:")
+            print("Your input is not supported. Follow tips in parentheses")
+        except ValueError:
+            logging.warning("Invalid input value")
+            print("ValueError")
+            print("Your input is not supported. Follow tips in parentheses")
         return mean_hr_bpm
 
-    def json_maker(self, filename, attributes):
+    def json_maker(self):
         """imports json_maker module to create a .json file populated with \
         stats from the ECG input and class-associated attributes
 
@@ -113,8 +186,23 @@ class HRMonitor:
         :returns test_data*.json: .json file populated with the data \
         generated from HRMonitor attributes being applied to a ECG .csv input
         """
-        from json_maker import json_maker
-        make_file = json_maker(self.filename)
+        try:
+            from json_maker import json_maker
+            logging.info("HRMonitor: json_maker imported")
+        except:
+            print("ImportError:")
+            print("json_maker function could not be found")
+        try:
+            make_file = json_maker(self.filename)
+            logging.info("HRMonitor: json made")
+        except TypeError:
+            logging.warning("Invalid input type")
+            print("TypeError:")
+            print("Your input is not supported. Follow tips in parentheses")
+        except ValueError:
+            logging.warning("Invalid input value")
+            print("ValueError")
+            print("Your input is not supported. Follow tips in parentheses")
 
     def main(self.filename):
         self.duration = self.duration(self.filename)

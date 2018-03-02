@@ -13,7 +13,10 @@ def num_beats(filename):
     import numpy as np
     import scipy.signal as signal
     from signal_processing import signal_processing
+    logging.info("num_beats: everything imported")
     corr = signal_processing(filename)
     peaks = signal.find_peaks_cwt(corr, np.arange(1,300))
     num_beats = len(peaks)
+    logging.info("num_beats: num_beats found")
+    logging.debug("num_beats="+str(num_beats))
     return num_beats

@@ -16,8 +16,10 @@ def signal_processing(filename):
     from extract_data import extract_voltage_data
     from extract_data import extract_time_data
     from import_data import import_data
+    logging.info("signal_processing: everything imported")
     template = pd.read_csv("test_data/template.csv", header=None)
     norm_template = extract_template_data(template)
     norm_voltage = extract_voltage_data(filename)
     correlation = np.correlate(norm_template, norm_voltage, mode="full")
+    logging.info("signal_processing: correlation")
     return correlation

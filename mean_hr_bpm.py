@@ -1,4 +1,20 @@
+import logging
+logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
+%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
+
 def mean_hr_bpm(filename):
+    """module to take user input for time scale, and analyze ECG input in \
+    that time scale
+
+    :param filename: the name of a file located in the /test_data folder \
+    entered as a string
+
+    :returns heartrate: heartrate during a specific period as a float
+    :raises IOError: raised if user tries to input value not accepted by \
+    program
+    :raises ValueError: raised if the generally accepted values fall outside \
+    of the signal time range
+    """
     import numpy as np
     import pandas as pd
     import scipy.signal as signal
@@ -42,5 +58,4 @@ def mean_hr_bpm(filename):
             "sec)")
     else:
         raise ValueError("Attempted input outside signal range")
-    print(heartrate)
     return heartrate

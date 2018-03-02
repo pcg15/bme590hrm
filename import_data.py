@@ -1,12 +1,17 @@
+import logging
+logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
+%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
+
 def import_data(filename):
-    """A function that asks for the user to input the filename (e.g. \
+    """a module that asks for the user to input the filename (e.g. \
     test_data1.csv) for the desired data and converts the data into a \
     DataFrame.
 
-    :param file_choice: a string of the csv filename from user input
+    :param filename: a string of the csv filename from user input
 
-    :returns: data from the csv file expressed as a pandas DataFrame
-    :raises:
+    :returns df: data from the csv file expressed as a pandas DataFrame
+    :raises IOError: raised if user tries to input a string that is not in \
+    the /test_data folder
     """
 
     import pandas as pd

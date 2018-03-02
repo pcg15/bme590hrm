@@ -1,4 +1,15 @@
+import logging
+logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
+%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
+
 def extract_voltage_data(filename):
+    """pulls voltage data out of pandas data frame and normalizes values
+
+    :param filename: the name of a file located in the /test_data folder \
+    entered as a string
+
+    :returns norm_voltage: normalized voltage data
+    """
     import numpy as np
     from import_data import import_data
     df = import_data(filename)
@@ -8,6 +19,13 @@ def extract_voltage_data(filename):
     return norm_voltage
 
 def extract_time_data(filename):
+    """pulls time data out of pandas data frame from ECG input
+
+    :param filename: the name of a file located in the /test_data folder \
+    entered as a string
+
+    :returns time: array of time values from ECG input
+    """
     from import_data import import_data
     df = import_data(filename)
     values = df.values
@@ -15,6 +33,13 @@ def extract_time_data(filename):
     return time
 
 def extract_template_data(template):
+    """pulls ECG template data out of pandas data frame and normalizes values
+
+    :param filename: the name of a file located in the /test_data folder \
+    entered as a string
+
+    :returns norm_template: normalized template data
+    """
     import numpy as np
     temp_values = template.values
     temp_vol = temp_values[:,1]

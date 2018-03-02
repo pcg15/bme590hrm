@@ -1,4 +1,15 @@
+import logging
+logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
+%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
+
 def signal_processing(filename):
+    """module to correlate normalized values of template and input ECG data
+
+    :param filename: the name of a file located in the /test_data folder \
+    entered as a string
+
+    :returns correlation: the correlation of template and input ECG data
+    """
     import numpy as np
     import pandas as pd
     from extract_data import extract_template_data

@@ -2,6 +2,7 @@ import logging
 logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
 %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
+
 def import_data(filename):
     """a module that asks for the user to input the filename (e.g. \
     test_data1.csv) for the desired data and converts the data into a \
@@ -19,6 +20,8 @@ def import_data(filename):
     choice = Path("test_data/"+filename)
     if choice.exists():
         df = pd.read_csv("test_data/" + filename, header=None)
+        logging.info("import_data: data imported")
     else:
+        logging.warning("Invalid input")
         raise IOError("Invalid Selection: file not in folder")
     return df

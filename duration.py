@@ -2,6 +2,7 @@ import logging
 logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
 %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
+
 def duration(filename):
     """module that determines the duration of the ECG input signal
 
@@ -11,7 +12,10 @@ def duration(filename):
     """
     import pandas as pd
     from import_data import import_data
+    logging.info("duration: everything imported")
     df = import_data(filename)
     df.columns = ["time", "voltage"]
     duration = df["time"].max()
+    logging.info("duration: duration found")
+    logging.debug("duration="+str(duration))
     return duration

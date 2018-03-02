@@ -1,16 +1,8 @@
-def num_beats(file_):
-
-    """...
-
-    :param:
-
-    :returns:
-    :raises ImportError:
-    :raises TypeError:
-    :raises ValueError:
-    """
-
-    import logging
-    str_ = logging.DEBUG
-    logging.basicConfig(filename="hrmonitorlog.txt", format='%(levelname)s \
-    %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=str_)
+def num_beats(filename):
+    import numpy as np
+    import scipy.signal as signal
+    from signal_processing import signal_processing
+    corr = signal_processing(filename)
+    peaks = signal.find_peaks_cwt(corr, np.arange(1,300))
+    num_beats = len(peaks)
+    return num_beats

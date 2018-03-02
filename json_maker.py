@@ -1,6 +1,6 @@
-def json_maker():
+def json_maker(filename):
     import json
-    filechoice = filechoice[:-4]
+    filename = filename[:-4]
     data = {
         "Average Heart Rate" : str(df.mean_hr_bpm) + " bpm",
         "Minimum and Maximum Lead Voltages" : str(df.voltage_extremes) + " mV",
@@ -10,6 +10,3 @@ def json_maker():
     }
     with open(str(filechoice)+".json", 'w') as f:
         json.dump(data, f)
-
-if __name__ == '__main__':
-    json_maker()

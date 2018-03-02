@@ -1,10 +1,9 @@
-def voltage_extremes():
+def voltage_extremes(filename):
     import pandas as pd
-    df = single_df
+    from import_data import import_data
+    df = import_data(filename)
     df.columns = ["time", "voltage"]
     voltage_min = df["voltage"].min()
     voltage_max = df["voltage"].max()
-    display = (voltage_min, voltage_max)
-
-if __name__ == '__main__':
-    voltage_extremes()
+    voltage_extremes = (voltage_min, voltage_max)
+    return voltage_extremes

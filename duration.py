@@ -1,10 +1,7 @@
-def duration():
+def duration(filename):
     import pandas as pd
-    df = single_df
+    from import_data import import_data
+    df = import_data(filename)
     df.columns = ["time", "voltage"]
     duration = df["time"].max()
-    display = str(duration) + " seconds"
-    print(display)
-
-if __name__ == '__main__':
-    duration()
+    return duration

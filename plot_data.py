@@ -1,6 +1,7 @@
 def plot_data():
     import pandas as pd
     from pathlib import Path
+
     import matplotlib as mpl
     mpl.use('TkAgg')
     import matplotlib.pyplot as plt

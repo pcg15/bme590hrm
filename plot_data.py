@@ -15,5 +15,5 @@ def plot_data(filename):
     if choice.exists():
         single_df = pd.read_csv("test_data/"+file_choice, header=None)
     single_df.columns = ["time", "voltage"]
-    single_df.plot(x="time",y="voltage")
+    single_df.plot(x="time", y="voltage")
     plt.show()

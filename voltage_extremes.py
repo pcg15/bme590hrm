@@ -2,6 +2,7 @@ import logging
 logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
 %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
+
 def voltage_extremes(filename):
     """module to calculate the maximum and minimum lead voltages of the input \
     ECG data

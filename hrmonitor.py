@@ -39,7 +39,6 @@ class HRMonitor:
         self.mean_hr_bpm = None
         self.Mean_hr_bpm()
 
-
     def Duration(self):
         """imports duration module to assign duration attribute to class
 
@@ -206,14 +205,3 @@ class HRMonitor:
             logging.warning("Invalid input value")
             print("ValueError")
             print("Your input is not supported. Follow tips in parentheses")
-
-    #def main(self.filename):
-        #self.duration = self.duration(self.filename)
-        #self.voltage_extremes = self.voltage_extremes(self.filename)
-        #self.num_beats = self.num_beats(self.filename)
-        #self.beats = self.beats(self.filename)
-        #self.mean_hr_bpm = self.mean_hr_bpm(self.filename)
-        #self.json_maker()
-
-#if __name__ == "__main__":
-#    a = HRMonitor(filename='test_data1.csv')

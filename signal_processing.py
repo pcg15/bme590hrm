@@ -2,6 +2,7 @@ import logging
 logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
 %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
+
 def signal_processing(filename):
     """module to correlate normalized values of template and input ECG data
 

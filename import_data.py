@@ -2,6 +2,7 @@ import logging
 logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
 %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
+
 def import_data(filename):
     """a module that asks for the user to input the filename (e.g. \
     test_data1.csv) for the desired data and converts the data into a \

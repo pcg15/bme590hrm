@@ -3,9 +3,10 @@ from duration import duration
 from mean_hr_bpm import mean_hr_bpm
 from num_beats import num_beats
 from beats import beats
-from voltage_extremes import voltage_extremes
+from voltage_extremes import voltage_extremes as ve
 logging.basicConfig(filename='hrmonitorlog.txt', format='%(levelname)s \
 %(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
+
 
 def json_maker(filename):
     """module that creates a .json file populated with \
@@ -22,12 +23,11 @@ def json_maker(filename):
     import json
     filechoice = filename[:-4]
     data = {
-        "Duration of Signal" : str(duration(filename)) + " seconds",
-        "Minimum and Maximum Lead Voltages" : str(voltage_extremes(filename)) \
-        + " mV",
-        "Number of Beats Detected" : str(num_beats(filename)) + " beats",
-        "Times When a Beat Occured" : str(beats(filename)),
-        "Average Heart Rate" : str(mean_hr_bpm(filename)) + " bpm"
+        "Duration of Signal": str(duration(filename)) + " seconds",
+        "Minimum and Maximum Lead Voltages": str(ve(filename)) + " mV",
+        "Number of Beats Detected": str(num_beats(filename)) + " beats",
+        "Times When a Beat Occured": str(beats(filename)),
+        "Average Heart Rate": str(mean_hr_bpm(filename)) + " bpm"
     }
     with open(str(filechoice)+".json", 'w') as f:
         json.dump(data, f)

@@ -1,55 +1,46 @@
-def mean_hr_bpm():
-    import pandas as pd
+def mean_hr_bpm(filename):
     import numpy as np
+    import pandas as pd
     import scipy.signal as signal
-    from scipy.signal import savgol_filter
-    template = pd.read_csv("test_data/template.csv", header=None)
-    val = template.values
-    std_template = (val - np.mean(val))
+    time_input = input("Please input time (10 sec, 20 sec, or full signal): ")
+    from extract_data import extract_time_data
+    time_vector = extract_time_data(filename)
 
-
-    import matplotlib as mpl
-    mpl.use('TkAgg')
-    import matplotlib.pyplot as plt
-
-
-
-#
-    from pathlib import Path
-    file_choice = input("Filename (e.g. test_data1.csv): ")
-    choice = Path("test_data/"+file_choice)
-    #time_choice = input("Time Scale (minutes): ")
-    if choice.exists():
-        single_df = pd.read_csv("test_data/"+file_choice, header=None)
-#
-        single_df.columns = ["time","voltage"]
-        default_time = single_df["time"]
-        values = single_df.values
-        std_input = (values - np.mean(values))
-        corr = np.correlate(std_input[:,1], std_template[:,1], mode="full")
-        #lowpass = np.convolve(corr, np.ones(100), mode="full")
-        #filtered = savgol_filter(corr, 3, 1)
-        #corr = np.correlate(norm_input[:,1], norm_input[:,1], mode="full")
-        peaks = signal.find_peaks_cwt(corr, np.arange(1,260))
-        total_beats = len(peaks)
-        print(total_beats)
-        plt.plot(corr)
-        #plt.plot(peaks)
-        plt.show()
-        #time_array = values[peaks,0]
-
-        #print(time_array)
-
-
-
+    if np.max(time_vector) >= float(time_input[:-4]):
+        if str(time_input) == "10" + " sec":
+            from extract_data import extract_time_data
+            time_vector = extract_time_data(filename)
+            a = np.where(time_vector == 10)[0]
+            from import_data import import_data
+            df = import_data(filename)
+            values = df.values
+            b = values[np.arange(0,a),1]
+            b_norm = b - np.mean(b)
+            template = pd.read_csv("test_data/template.csv", header=None)
+            from extract_data import extract_template_data
+            norm_template = extract_template_data(template)
+            corr = np.correlate(norm_template, b_norm, mode="full")
+            peaks = signal.find_peaks_cwt(corr, np.arange(1,300))
+            heartrate = len(peaks) / (10/60)
+        elif str(time_input) == "20" + " sec":
+            from extract_data import extract_time_data
+            time_vector = extract_time_data(filename)
+            a = np.where(time_vector == 20)[0]
+            from import_data import import_data
+            df = import_data(filename)
+            values = df.values
+            b = values[np.arange(0,a),1]
+            b_norm = b - np.mean(b)
+            template = pd.read_csv("test_data/template.csv", header=None)
+            from extract_data import extract_template_data
+            norm_template = extract_template_data(template)
+            corr = np.correlate(norm_template, b_norm, mode="full")
+            peaks = signal.find_peaks_cwt(corr, np.arange(1,300))
+            heartrate = len(peaks) / (20/60)
+        else:
+            raise IOError("Invalid input. Try Again (Make sure to include " \
+            "sec)")
     else:
-        print("You're selection is invalid. Please Choose a file in the \
-        test_data folder")
-    #if time_choice == None:
-        #time_choice = default_time
-
-
-
-
-if __name__ == '__main__':
-    mean_hr_bpm()
+        raise ValueError("Attempted input outside signal range")
+    print(heartrate)
+    return heartrate
